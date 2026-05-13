@@ -2673,7 +2673,7 @@ export class AdminService {
   }
 
   async getTransactionLedger(filters: {
-    kind?: 'ShopItem' | 'EventRsvp' | 'EventTicket';
+    kind?: 'ShopItem' | 'EventTicket';
     userId?: number;
     fulfilled?: boolean;
     limit?: number;
@@ -2711,7 +2711,6 @@ export class AdminService {
       totalCount: 0,
       totalSpent: 0,
       shopCount: 0,
-      rsvpCount: 0,
       ticketCount: 0,
     };
     for (const row of allTotals) {
@@ -2720,7 +2719,6 @@ export class AdminService {
       summary.totalCount += count;
       summary.totalSpent += spent;
       if (row.kind === 'ShopItem') summary.shopCount = count;
-      else if (row.kind === 'EventRsvp') summary.rsvpCount = count;
       else if (row.kind === 'EventTicket') summary.ticketCount = count;
     }
     summary.totalSpent = Math.round(summary.totalSpent * 10) / 10;
